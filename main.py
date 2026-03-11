@@ -136,6 +136,18 @@ def on_forever():
 
     radio.on_received_string(on_received_string)
 
+    def on_button_pressed_a():
+        serial.write_line("========== GUNCEL PARAMETRELER ==========")
+        serial.write_line("Mod           : " + current_mode)
+        serial.write_line("RATE          : " + str(sample_rate) + " ms")
+        serial.write_line("TEMP_THRESHOLD: " + str(temp_threshold) + " derece")
+        serial.write_line("LIGHT_THRESHOLD: " + str(light_threshold))
+        serial.write_line("Buffer Kayit  : " + str(buffer_count) + "/" + str(MAX_BUFFER))
+        serial.write_line("=========================================")
+
+    input.on_button_pressed(Button.A, on_button_pressed_a)
+
+
         
 
 

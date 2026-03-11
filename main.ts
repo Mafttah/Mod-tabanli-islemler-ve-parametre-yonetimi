@@ -143,5 +143,14 @@ function on_forever() {
         }
         
     })
+    input.onButtonPressed(Button.A, function on_button_pressed_a() {
+        serial.writeLine("========== GUNCEL PARAMETRELER ==========")
+        serial.writeLine("Mod           : " + current_mode)
+        serial.writeLine("RATE          : " + ("" + sample_rate) + " ms")
+        serial.writeLine("TEMP_THRESHOLD: " + ("" + temp_threshold) + " derece")
+        serial.writeLine("LIGHT_THRESHOLD: " + ("" + light_threshold))
+        serial.writeLine("Buffer Kayit  : " + ("" + buffer_count) + "/" + ("" + MAX_BUFFER))
+        serial.writeLine("=========================================")
+    })
 }
 
