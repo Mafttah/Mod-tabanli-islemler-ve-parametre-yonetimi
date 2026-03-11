@@ -9,7 +9,7 @@ let light_threshold = 100
 let MAX_BUFFER = 10
 let data_buffer = ["", "", "", "", "", "", "", "", "", ""]
 let buffer_count = 0
-function on_forever() {
+basic.forever(function on_forever() {
     //  ---- ACK FONKSIYONU ----
     function send_ack(cmd_name: string, status: string) {
         let ack = "A:" + ("" + satellite_id) + ":" + cmd_name + ":" + status
@@ -152,5 +152,21 @@ function on_forever() {
         serial.writeLine("Buffer Kayit  : " + ("" + buffer_count) + "/" + ("" + MAX_BUFFER))
         serial.writeLine("=========================================")
     })
-}
-
+    basic.forever(function on_forever() {
+        if (current_mode == "SLEEP") {
+            mode_sleep()
+            basic.pause(70000)
+        } else if (current_mode == "STANDBY") {
+            mode_standby()
+            basic.pause(15000)
+        } else if (current_mode == "COLLECT") {
+            mode_collect()
+            basic.pause(4000)
+        } else if (current_mode == "TRANSMIT") {
+            mode_transmit()
+            basic.pause(7000)
+        }
+        
+    })
+    basic.showString("HW3")
+})

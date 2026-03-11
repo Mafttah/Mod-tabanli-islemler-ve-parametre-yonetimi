@@ -147,6 +147,28 @@ def on_forever():
 
     input.on_button_pressed(Button.A, on_button_pressed_a)
 
+    def on_forever():
+        if current_mode == "SLEEP":
+            mode_sleep()
+            basic.pause(70000)
+
+        elif current_mode == "STANDBY":
+            mode_standby()
+            basic.pause(15000)
+
+        elif current_mode == "COLLECT":
+            mode_collect()
+            basic.pause(4000)
+
+        elif current_mode == "TRANSMIT":
+            mode_transmit()
+            basic.pause(7000)
+
+    basic.forever(on_forever)
+    basic.show_string("HW3")
+basic.forever(on_forever)
+
+
 
         
 
